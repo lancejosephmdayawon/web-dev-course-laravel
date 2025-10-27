@@ -14,7 +14,6 @@ This repository contains our Web Development course project where we're learning
 -   Eloquent ORM
 -   Middleware
 -   Authentication
--   [Add other concepts]
 
 ## Project Structure
 
