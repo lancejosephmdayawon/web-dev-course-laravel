@@ -1,0 +1,22 @@
+@import "bootstrap/scss/bootstrap";
+
+// -----------------------------
+// Custom Styles
+// -----------------------------
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.carousel,
+.carousel-item,
+.carousel-item img {
+  height: 100vh; // Full viewport height
+}
+
+.carousel-item img {
+  object-fit: cover; // Prevents image stretching
+  width: 100%;
+}
