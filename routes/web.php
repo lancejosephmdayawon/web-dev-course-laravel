@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SampleController;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,6 @@ Route::get('pricing', [PageController::class, 'pricing'])->name('pricing');
 //Form
 Route::get('/student', [StudentController::class, 'index'])->name('student.index');
 Route::post('/student', [StudentController::class, 'store'])->name('student.store');
+
+//Resource Route
+Route::resource('news', SampleController::class);
