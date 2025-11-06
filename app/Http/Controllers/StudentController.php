@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+
+
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -27,6 +30,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info('================>>>> ENTER STUDENT CONTROLLER ');
         // Validate input
         $validated = $request->validate([
             'emailAddress' => 'required|email',
@@ -36,9 +40,11 @@ class StudentController extends Controller
             'date' => 'required|date',
         ]);
 
+        Log::info('Validated data:', $validated);
+
 
         //dd($validated);
-
+        Log::debug('Email: ' . $validated['emailAddress']);
         // Return success message
         return redirect()->back()->with('success', 'Student information submitted successfully!');
     }

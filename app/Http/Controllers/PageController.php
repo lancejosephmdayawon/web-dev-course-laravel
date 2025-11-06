@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -46,6 +48,7 @@ class PageController extends Controller
     {
         //return "Route does not exist.";
         //return redirect()->route('USER');
+        Log::error('Error 404');
         return view('404');
     }
 
