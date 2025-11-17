@@ -10,7 +10,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        return redirect()->route('dashboard');
+        return redirect()->route('blog.index');
     }
 
     public function user()

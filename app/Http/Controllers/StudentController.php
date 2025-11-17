@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 
@@ -39,14 +40,22 @@ class StudentController extends Controller
             'lastName' => 'required|string|max:50',
             'date' => 'required|date',
         ]);
+        $age = $this->calculateAge($request->input('date'));
 
         Log::info('Validated data:', $validated);
-
+        Log::info('Age: ' . $age);
 
         //dd($validated);
         Log::debug('Email: ' . $validated['emailAddress']);
         // Return success message
-        return redirect()->back()->with('success', 'Student information submitted successfully!');
+        //return redirect()->back()->with('success', 'Student information submitted successfully!');
+        // Pass data to show.blade.php
+        return view('show', [
+            'firstName' => $validated['firstName'],
+            'middleName' => $validated['middleName'],
+            'lastName' => $validated['lastName'],
+            'age' => $age,
+        ]);
     }
 
     /**
@@ -79,5 +88,16 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    //private functions
+    private function calculateAge($date)
+    {
+        $birthdate = Carbon::parse($date);
+        $today = Carbon::now();
+
+        $age = $birthdate->diff($today);
+
+        return $age->y;
     }
 }
