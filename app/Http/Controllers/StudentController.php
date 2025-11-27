@@ -33,12 +33,16 @@ class StudentController extends Controller
     {
         Log::info('================>>>> ENTER STUDENT CONTROLLER ');
         // Validate input
+
         $validated = $request->validate([
-            'emailAddress' => 'required|email',
-            'firstName' => 'required|string|max:50',
-            'middleName' => 'nullable|string|max:50',
+            'emailAddress' => ['required', 'email', 'min:10', 'max:10', 'ends_with:@iskolarngbayan.pup.edu.ph'],
+            'firstName' => ['required', 'min:1'],
+            'middleName' => ['nullable', 'string', 'min:1', 'max:4', 'ends_with:.'],
             'lastName' => 'required|string|max:50',
             'date' => 'required|date',
+        ], [
+            'emailAddress.max' => 'Sobra!',
+            'emailAddress.ends_with' => 'Dapat sakto sa format! @iskolarngbayan!'
         ]);
         $age = $this->calculateAge($request->input('date'));
 
@@ -50,7 +54,7 @@ class StudentController extends Controller
         // Return success message
         //return redirect()->back()->with('success', 'Student information submitted successfully!');
         // Pass data to show.blade.php
-        return view('show', [
+        return view('shows', [
             'firstName' => $validated['firstName'],
             'middleName' => $validated['middleName'],
             'lastName' => $validated['lastName'],

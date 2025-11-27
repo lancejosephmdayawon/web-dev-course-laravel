@@ -8,6 +8,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    <div class="alert alert-danger mt-5">{{ $error }}</div>
+    @endforeach
+    @endif
     <form action="{{ route('student.store') }}" method="POST">
         @csrf
         <!-- Email -->

@@ -73,4 +73,9 @@ class PageController extends Controller
     {
         return view('pricing');
     }
+
+    public function shows()
+    {
+        return view('shows');
+    }
 }

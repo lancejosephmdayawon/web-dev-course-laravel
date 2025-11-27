@@ -50,3 +50,5 @@ Route::get('/blog/category/{category}', [BlogController::class, 'filterByCategor
 
 // Route for the About page
 Route::get('/about', [BlogController::class, 'about'])->name('about');
+
+Route::get('/shows', [PageController::class, 'shows'])->name('shows');
