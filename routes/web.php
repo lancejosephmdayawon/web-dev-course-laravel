@@ -6,14 +6,18 @@ use App\Http\Controllers\SampleController;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [PageController::class, 'index']);
 
 //Grouped Routes
 Route::group(['prefix' => 'user'], function () {
+    // Tables
+    Route::get('/all', [UserController::class, 'getAllUsers']);
+    Route::get('/{id}', [UserController::class, 'getUserByID']);
+
     Route::get('/', [PageController::class, 'user'])->name('USER');
-    Route::get('/{id}', [PageController::class, 'userID']);
-    Route::get('/{id}/{name}', [PageController::class, 'userNameID']);
+    //Route::get('/{id}/{name}', [PageController::class, 'userNameID']);
 });
 
 //Sample Basic Routes
